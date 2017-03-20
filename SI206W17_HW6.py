@@ -145,7 +145,7 @@ print("\n\n***** Problem 9 *****")
 # Use a list comprehension to generate a LIST of just the names of those Student instances whose name is longer than their seniority (i.e., ["Albert", "Mai", "Dinesh", "Euijin"]). Assign it to a variable called names_with_not_too_much_seniority.
 
 ## Note that you can use another list you have already created for this problem.
-
+names_with_not_too_much_seniority = [x.name for x in programmers if len(x.name) > x.years_UM] 
 
 
 
@@ -165,19 +165,26 @@ print("\n\n***** Problem 10 *****")
 ## We have provided files samplehw6_1.txt and samplehw6_2.txt for your use for this problem, which hopefully you have downloaded, so you can test with those file names! The test below also relies upon these files. Of course, you could also create other files for testing.
 
 # Define readfiles (make sure to close the file reference in the right place)
-
+def readfiles(files): 
+    for x in files: 
+        file_obj = open(x)
+        for y in file_obj: 
+            yield y 
+        file_obj.close()    
 
 # Define len_check
-
+def len_check(humes):
+    return(x for x in humes if len(x) > 40)
 
 # Define main_filterer
-
+def main_filterer(lst):
+    return len_check(readfiles(lst))
 
 
 ## Uncomment this code to test so you can see easily what results from your code. DO uncomment it. DO NOT delete or change it. (You can add other code above while you work, of course.)
-# provided_file_names = ["samplehw6_1.txt","samplehw6_2.txt"]
-# for ln in main_filterer(provided_file_names):
-#     print(ln.rstrip('\n'), end=" ")
+provided_file_names = ["samplehw6_1.txt","samplehw6_2.txt"]
+for ln in main_filterer(provided_file_names):
+     print(ln.rstrip('\n'), end=" ")
 #####
 
 
